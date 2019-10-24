@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "bergco.se.mvvm"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.cardview:cardview:$androidXCardViewVersion"
+    implementation "androidx.appcompat:appcompat:$androidXVersion"
+    implementation "com.google.android.material:material:$androidXmaterialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$androidXConstraint"
+    implementation "androidx.fragment:fragment:$androidXFragment"
+    implementation "androidx.fragment:fragment-ktx:$androidXFragment"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidXCoordinator"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidXLifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidXLifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$androidXLifecycle"
+
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "androidx.test:runner:$androidXTestCoreVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
+    implementation "androidx.annotation:annotation:$androidXAnnotations"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+
+    // Koin for Kotlin
+    api "org.koin:koin-core:$koinVersion"
+    // Koin for Android
+    api "org.koin:koin-android:$koinVersion"
+    // Koin Android Scope feature
+    api "org.koin:koin-android-scope:$koinVersion"
+
+    /** Annotation Permissions */
+    kapt "com.github.hotchemi:permissionsdispatcher-processor:$permissionDispatcherVersion"
+    implementation("com.github.hotchemi:permissionsdispatcher:$permissionDispatcherVersion") {
+        exclude module: "support-v13"
+    }
+    kapt "com.github.hotchemi:permissionsdispatcher-processor:$permissionDispatcherVersion"
+}

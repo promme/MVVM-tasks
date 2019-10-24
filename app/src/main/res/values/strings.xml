@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MVVM</string>
+
+    <!--Task group fragment-->
+    <string name="fragment_task_group_title">Task group</string>
+    <string name="add_task_group_new_task_group">Add new task group</string>
+    <string name="add_task_group_name">Name</string>
+    <string name="add_task_group_description">Description</string>
+    <string name="add_task_group_save">SAVE</string>
+
+    <!--Task list fragment-->
+    <string name="task_fragment_toolbar_title">Tasks</string>
+    <string name="add_task_fragment_name">Name</string>
+    <string name="add_task_fragment_description">Description</string>
+    <string name="add_task_fragment_add_new_task">Add new task</string>
+    <string name="add_task_fragment_save">SAVE</string>
+    <string name="tasks_group_adapter_completed">%d/%d</string>
+</resources>
