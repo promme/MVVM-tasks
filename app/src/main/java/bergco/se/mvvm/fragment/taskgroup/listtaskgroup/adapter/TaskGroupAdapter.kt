@@ -39,7 +39,7 @@ class TaskGroupAdapter(private val onTaskGroupClicked: (TaskGroup) -> (Unit)) :
                         tasks?.filter { it.isCompleted }?.size ?: 0,
                         tasks?.size ?: 0
                     )
-                cv_task_group_root.setOnClickListener { onTaskGroupClicked.invoke(taskGroup) }
+                setOnClickListener { onTaskGroupClicked.invoke(taskGroup) }
             }
         }
     }
