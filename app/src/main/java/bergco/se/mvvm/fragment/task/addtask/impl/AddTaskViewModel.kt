@@ -3,11 +3,11 @@ package bergco.se.mvvm.fragment.task.addtask.impl
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import bergco.se.mvvm.base.BaseViewModel
-import bergco.se.mvvm.extensions.inject
 import bergco.se.mvvm.model.Task
 import bergco.se.mvvm.model.TaskGroup
 import bergco.se.mvvm.storage.LocalCacheRepository
 import kotlinx.coroutines.launch
+import org.koin.standalone.inject
 
 class AddTaskViewModel : BaseViewModel() {
     fun insertTask(task: Task) {
