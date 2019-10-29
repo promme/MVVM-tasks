@@ -38,7 +38,7 @@ class AddTaskGroupViewModel : BaseViewModel() {
             taskGroupNameError.postValue("Cant be empty")
             result = false
         }
-        if (taskGroupName.value.isNullOrBlank()) {
+        if (taskGroupDescription.value.isNullOrBlank()) {
             taskGroupDescriptionError.postValue("Cant be empty")
             result = false
         }

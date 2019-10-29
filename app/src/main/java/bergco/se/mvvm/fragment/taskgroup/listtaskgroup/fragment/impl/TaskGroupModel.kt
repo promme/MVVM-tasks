@@ -9,15 +9,11 @@ import bergco.se.mvvm.storage.database.TasksDAO
 class TaskGroupModel {
     val taskGroupCacheRepository: LocalCacheRepository<TaskGroup> by inject()
     val taskGroupDAO: TaskGroupDAO by inject()
-    val tasksDao: TasksDAO by inject()
 
     val observableTaskGroupsAndTasks = taskGroupDAO.observeTaskGroupsAndTasks()
     fun selectTaskGroup(taskGroup: TaskGroup) {
         taskGroupCacheRepository.put(taskGroup)
     }
-
-    suspend fun getAllTasksById(id: String) =
-        tasksDao.getTasksByGroupId(id)
 
 
 }

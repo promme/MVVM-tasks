@@ -17,8 +17,8 @@ import bergco.se.mvvm.model.TaskGroup
 import kotlinx.android.synthetic.main.fragment_task_group.*
 
 class TaskGroupFragment : BaseFragment(R.layout.fragment_task_group) {
-    lateinit var taskGroupViewModel: TaskGroupViewModel
-    val onTaskGroupClicked: (TaskGroup) -> Unit =
+    private lateinit var taskGroupViewModel: TaskGroupViewModel
+    private val onTaskGroupSelected: (TaskGroup) -> Unit =
         { taskgroup ->
             taskGroupViewModel.onTaskGroupSelected(taskgroup)
             context?.goToFragment(TaskListFragment())
@@ -31,7 +31,7 @@ class TaskGroupFragment : BaseFragment(R.layout.fragment_task_group) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val taskGroupAdapter = TaskGroupAdapter(onTaskGroupClicked)
+        val taskGroupAdapter = TaskGroupAdapter(onTaskGroupSelected)
         rv_task_group_list.adapter = taskGroupAdapter
         taskGroupViewModel.observableTaskGroupsAndTasks.observe(
             this,

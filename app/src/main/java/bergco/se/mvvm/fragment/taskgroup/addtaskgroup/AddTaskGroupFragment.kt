@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_add_task_group.*
 
 class AddTaskGroupFragment : BottomSheetDialogFragment() {
 
-    lateinit var addTaskGroupViewModel: AddTaskGroupViewModel
+    private lateinit var addTaskGroupViewModel: AddTaskGroupViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

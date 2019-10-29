@@ -26,4 +26,7 @@ interface TaskGroupDAO {
     @Query("SELECT * FROM taskGroup")
     fun observeTaskGroupsAndTasks(): LiveData<List<TaskGroupAndTasks>>
 
+    @Query("DELETE FROM TASKGROUP")
+    suspend fun clearTable()
+
 }

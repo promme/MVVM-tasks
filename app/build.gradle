@@ -41,15 +41,18 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidXLifecycle"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidXLifecycle"
     implementation "androidx.lifecycle:lifecycle-extensions:$androidXLifecycle"
-
+    implementation "androidx.test.ext:junit:$androidXTestExt"
+    androidTestImplementation "android.arch.core:core-testing:1.1.1"
 
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test:runner:$androidXTestCoreVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
     implementation "androidx.annotation:annotation:$androidXAnnotations"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.3.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
 
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
@@ -57,11 +60,11 @@ dependencies {
 
 
     // Koin for Kotlin
-    api "org.koin:koin-core:$koinVersion"
+    implementation "org.koin:koin-core:$koinVersion"
     // Koin for Android
-    api "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-android:$koinVersion"
     // Koin Android Scope feature
-    api "org.koin:koin-android-scope:$koinVersion"
+    implementation "org.koin:koin-android-scope:$koinVersion"
 
     /** Annotation Permissions */
     kapt "com.github.hotchemi:permissionsdispatcher-processor:$permissionDispatcherVersion"
