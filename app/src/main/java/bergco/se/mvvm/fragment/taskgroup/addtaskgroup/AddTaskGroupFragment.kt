@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import bergco.se.mvvm.R
+import bergco.se.mvvm.extensions.lazyViewModel
 import bergco.se.mvvm.extensions.observeText
 import bergco.se.mvvm.fragment.taskgroup.addtaskgroup.impl.AddTaskGroupViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -15,12 +15,11 @@ import kotlinx.android.synthetic.main.fragment_add_task_group.*
 
 class AddTaskGroupFragment : BottomSheetDialogFragment() {
 
-    private lateinit var addTaskGroupViewModel: AddTaskGroupViewModel
+    val addTaskGroupViewModel: AddTaskGroupViewModel by lazyViewModel(this@AddTaskGroupFragment)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppBottomSheetDialogTheme)
-        addTaskGroupViewModel = ViewModelProvider(this).get(AddTaskGroupViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -30,6 +29,7 @@ class AddTaskGroupFragment : BottomSheetDialogFragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_add_task_group, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,8 +49,10 @@ class AddTaskGroupFragment : BottomSheetDialogFragment() {
         addTaskGroupViewModel.taskGroupDescriptionError.observe(this, Observer<String> { error ->
             tiet_add_task_group_desciption.error = error
         })
-        addTaskGroupViewModel.dismissDialog.observe(this, Observer<Boolean> { shouldDissmiss ->
-            if (shouldDissmiss) dismiss()
+        addTaskGroupViewModel.dismissDialog.observe(this, Observer<Boolean> { shouldDissmis ->
+            if (shouldDissmis) {
+                dismiss()
+            }
         })
     }
 }

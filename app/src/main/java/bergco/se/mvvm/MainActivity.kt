@@ -11,6 +11,7 @@ import bergco.se.mvvm.extensions.showIfElseGone
 import bergco.se.mvvm.extensions.visible
 import bergco.se.mvvm.fragment.taskgroup.listtaskgroup.fragment.TaskGroupFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
@@ -21,9 +22,9 @@ class MainActivity : BaseActivity() {
         goToFragment(TaskGroupFragment())
     }
 
-    fun goToFragment(fragment: BaseFragment) {
+    fun goToFragment(fragment: BaseFragment, addToBackstack: Boolean = false) {
         supportFragmentManager.inTransaction {
-            addToBackStack(fragment::javaClass.name)
+            if (addToBackstack) addToBackStack(fragment::javaClass.name)
             replace(
                 main_content.id,
                 fragment,
@@ -44,7 +45,10 @@ class MainActivity : BaseActivity() {
         fab.apply {
             visible()
             setImageDrawable(icon)
-            setOnClickListener { action?.invoke() }
+            setOnClickListener {
+                Timber.d("***OLLE fab clicked")
+                action?.invoke()
+            }
         }
     }
 

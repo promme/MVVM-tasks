@@ -6,21 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import bergco.se.mvvm.R
+import bergco.se.mvvm.extensions.lazyActivityBoundViewModel
+import bergco.se.mvvm.extensions.lazyViewModel
 import bergco.se.mvvm.extensions.observeText
 import bergco.se.mvvm.fragment.task.addtask.impl.AddTaskViewModel
+import bergco.se.mvvm.sharedviewmodels.TaskGroupSharedViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_add_task.*
 
 class AddTaskFragment : BottomSheetDialogFragment() {
 
-    lateinit var addTaskViewModel: AddTaskViewModel
+    val addTaskViewModel: AddTaskViewModel by lazyViewModel(this@AddTaskFragment)
+    val taskGroupSharedViewModel: TaskGroupSharedViewModel by lazyActivityBoundViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppBottomSheetDialogTheme)
-        addTaskViewModel = ViewModelProvider(this).get(AddTaskViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -39,7 +42,7 @@ class AddTaskFragment : BottomSheetDialogFragment() {
 
     private fun setupListeners() {
         btn_add_task_save.setOnClickListener {
-            addTaskViewModel.onSaveClicked()
+            addTaskViewModel.onSaveClicked(taskGroupSharedViewModel.taskGroupIdLiveData.value!!)
         }
         tiet_add_task_name.observeText(addTaskViewModel.taskName)
         tiet_add_task_desciption.observeText(addTaskViewModel.taskDescription)
@@ -51,9 +54,9 @@ class AddTaskFragment : BottomSheetDialogFragment() {
             tiet_add_task_desciption.error = error
         })
         addTaskViewModel.dismissDialog.observe(this, Observer<Boolean> { shouldDissmiss ->
-            if (shouldDissmiss) dismiss()
+            if (shouldDissmiss) {
+                dismiss()
+            }
         })
     }
-
-
 }

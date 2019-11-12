@@ -28,6 +28,7 @@ fun TextView.setTextWatcher(
 }
 
 fun TextView.observeText(mutableLiveData: MutableLiveData<String>) {
+    this.text = mutableLiveData.value
     setTextWatcher(afterTextChanged = { text -> mutableLiveData.postValue(text.toString()) })
 }
 
